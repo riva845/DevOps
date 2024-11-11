@@ -1,0 +1,26 @@
+name: Run Hello World Script
+
+on:
+  push:
+    branches:
+      - main  # Указывает, что workflow запускается при каждом push в ветку main
+
+jobs:
+  run-hello-world:
+    runs-on: ubuntu-latest  # Выбирает операционную систему для выполнения задачи
+
+    steps:
+      # Шаг 1: Клонирование репозитория
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Шаг 2: Установка Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Вы можете указать точную версию Python, например, '3.8'
+
+      # Шаг 3: Запуск скрипта hello.py
+      - name: Run Hello World script
+        run: |
+          python hello.py  # Выполняет Python-скрипт, находящийся в корне репозитория
